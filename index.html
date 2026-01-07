@@ -1,0 +1,27 @@
+<body>
+    <div id="entry-screen" onclick="startExperience()">
+        <p style="letter-spacing: 8px;">[ CLICK TO ENTER ]</p>
+    </div>
+
+    <div class="video-wrapper">
+        <iframe id="bg-video" 
+            src="https://www.youtube.com/embed/JIVp3erJDMo?autoplay=1&mute=1&loop=1&playlist=JIVp3erJDMo&controls=0&rel=0&modestbranding=1" 
+            allow="autoplay; encrypted-media" 
+            style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%); border: none;">
+        </iframe>
+    </div>
+
+    <div class="container">
+        </div>
+
+    <script>
+        function startExperience() {
+            const entry = document.getElementById('entry-screen');
+            entry.style.opacity = '0';
+            setTimeout(() => entry.style.display = 'none', 1000);
+            
+            // Note: In this version, the video stays muted because browsers 
+            // often block unmuting via iframe for security.
+        }
+    </script>
+</body>
