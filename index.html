@@ -1,27 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW M3 Project</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #000; overflow: hidden; height: 100vh; width: 100vw; }
+
+        /* VIDEO BACKGROUND */
+        #bg-video {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(40%);
+        }
+
+        /* CONTAINER */
+        .container {
+            position: relative; z-index: 1;
+            height: 100%;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        /* ENTRY SCREEN */
+        #entry-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 999; cursor: pointer;
+            transition: opacity 0.8s;
+        }
+
+        /* CARD DESIGN */
+        .profile-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            width: 420px; /* Made slightly wider for photos */
+            color: white;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* HIDE CARD ANIMATION */
+        .hidden-card {
+            opacity: 0;
+            transform: scale(0.9);
+            filter: blur(20px);
+        }
+
+        .logo { width: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 10px black); }
+        h1 { font-size: 26px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 5px; font-weight: 700; }
+        .subtitle { color: #aaa; font-size: 12px; margin-bottom: 30px; letter-spacing: 1px; }
+
+        /* BUTTONS */
+        .btn {
+            display: block; width: 100%;
+            background: rgba(255,255,255,0.08);
+            color: white; text-decoration: none;
+            padding: 14px; margin: 12px 0; border-radius: 8px;
+            transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+        }
+        .btn:hover { background: rgba(255,255,255,0.2); border-color: #0066b1; }
+
+        /* SPECS STYLES */
+        .specs-list { text-align: left; padding: 10px; }
+        .spec-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 10px 0; display: flex; justify-content: space-between; }
+        
+        /* --- NEW GALLERY STYLES --- */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 columns */
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .photo-frame {
+            height: 100px; /* Fixed height for neatness */
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures photo fills the square */
+            transition: transform 0.5s ease;
+        }
+
+        /* Hover Effect: Glow Blue & Zoom */
+        .photo-frame:hover {
+            border-color: #0066b1; /* BMW Blue */
+            box-shadow: 0 0 15px rgba(0, 102, 177, 0.5);
+            transform: translateY(-3px);
+        }
+        .photo-frame:hover img {
+            transform: scale(1.1); /* Slight Zoom */
+        }
+
+    </style>
+</head>
 <body>
-    <div id="entry-screen" onclick="startExperience()">
-        <p style="letter-spacing: 8px;">[ CLICK TO ENTER ]</p>
+
+    <div id="entry-screen" onclick="startSite()">
+        <p style="color: white; letter-spacing: 6px; font-size: 14px;">[ CLICK TO ENTER ]</p>
     </div>
 
-    <div class="video-wrapper">
-        <iframe id="bg-video" 
-            src="https://www.youtube.com/embed/JIVp3erJDMo?autoplay=1&mute=1&loop=1&playlist=JIVp3erJDMo&controls=0&rel=0&modestbranding=1" 
-            allow="autoplay; encrypted-media" 
-            style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%); border: none;">
-        </iframe>
-    </div>
+    <video id="bg-video" loop muted playsinline>
+        <source src="https://cdn.discordapp.com/attachments/1310335987326390402/1458245517988593778/1.mp4?ex=695ef078&is=695d9ef8&hm=6c32f69c449634a443183ced03185d9051f06f3ea41ec7d57d00b6a806a30ce4&" type="video/mp4">
+    </video>
 
     <div class="container">
+        <div class="profile-card" id="main-card">
+            
+            <div id="home-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" alt="BMW" class="logo">
+                <h1>BMW M3</h1>
+                <p class="subtitle">The Ultimate Driving Machine</p>
+                
+                <button class="btn" onclick="showSection('specs')">M3 Competition Specs</button>
+                <button class="btn" onclick="showSection('gallery')">Gallery</button>
+                <button class="btn" onclick="showSection('contact')">Contact</button>
+            </div>
+
+            <div id="specs-content" style="display: none;">
+                <h1>PERFORMANCE</h1>
+                <p class="subtitle">Technical Data</p>
+                <div class="specs-list">
+                    <div class="spec-item"><span>Engine</span> <b>3.0L Twin-Turbo</b></div>
+                    <div class="spec-item"><span>Power</span> <b>503 HP</b></div>
+                    <div class="spec-item"><span>0-60 mph</span> <b>3.4 Sec</b></div>
+                </div>
+                <button class="btn" onclick="showSection('home')">← Back</button>
+            </div>
+
+            <div id="gallery-content" style="display: none;">
+                <h1>GALLERY</h1>
+                <p class="subtitle">Visual Collection</p>
+                
+                <div class="photo-grid">
+                    <div class="photo-frame">
+                        <img src="https://cdn.discordapp.com/attachments/1310335987326390402/1458250864027369625/2.jpg.webp?ex=695ef572&is=695da3f2&hm=c34a606fd59209e7dfb3e75d5a09c01f91fc313680a53395accd9e117ade78d7&" alt="BMW Photo 1">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="https://cdn.discordapp.com/attachments/1310335987326390402/1458250864425697372/3.jpg.jpg?ex=695ef573&is=695da3f3&hm=44fb0b5df977bca01a87baa1c7ddc14cbebf7aa9382989705fa1f2dcfdb037db&" alt="BMW Photo 2">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="https://media.discordapp.net/attachments/1310335987326390402/1458250864706719905/4.jpg.jfif?ex=695ef573&is=695da3f3&hm=43a96303b7bfc9bd4933c1c00f5876b1ba42fe87ca97b0220bd6db2cd33f5e7c&=&format=webp" alt="BMW Photo 3">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="https://media.discordapp.net/attachments/1310335987326390402/1458250864987865201/1.jpg.jpg?ex=695ef573&is=695da3f3&hm=fb286e25bbd7a2c08369eb50eb6bb09135ce6716c8c7eb865c121e41c1a60438&=&format=webp&width=541&height=676" alt="BMW Photo 4"> </div>
+                </div>
+
+                <button class="btn" onclick="showSection('home')">← Back</button>
+            </div>
+
+            <div id="contact-content" style="display: none;">
+                <h1>CONTACT</h1>
+                <p class="subtitle">School Project by Melliti Adem</p>
+                <p style="margin: 20px 0; color: #ccc; font-size: 14px;">
+                    This project was built for school using HTML and CSS.
+                </p>
+                <button class="btn" onclick="showSection('home')">← Back</button>
+            </div>
+
         </div>
+    </div>
 
     <script>
-        function startExperience() {
-            const entry = document.getElementById('entry-screen');
-            entry.style.opacity = '0';
-            setTimeout(() => entry.style.display = 'none', 1000);
-            
-            // Note: In this version, the video stays muted because browsers 
-            // often block unmuting via iframe for security.
+        function startSite() {
+            var video = document.getElementById('bg-video');
+            var screen = document.getElementById('entry-screen');
+            video.play(); video.muted = false;
+            screen.style.opacity = '0';
+            setTimeout(() => { screen.style.display = 'none'; }, 800);
+        }
+
+        function showSection(sectionName) {
+            var card = document.getElementById('main-card');
+            card.classList.add('hidden-card'); // Blur & Fade Out
+
+            setTimeout(function() {
+                // Hide all sections
+                ['home', 'specs', 'gallery', 'contact'].forEach(id => {
+                    document.getElementById(id + '-content').style.display = 'none';
+                });
+
+                // Show target section
+                document.getElementById(sectionName + '-content').style.display = 'block';
+                
+                card.classList.remove('hidden-card'); // Fade Back In
+            }, 500);
         }
     </script>
 </body>
+</html>
