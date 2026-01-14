@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background: #000; overflow: hidden; height: 100vh; width: 100vw; }
 
-        /* VIDEO BACKGROUND */
         #bg-video {
             position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
@@ -17,14 +17,12 @@
             filter: brightness(70%);
         }
 
-        /* CONTAINER */
         .container {
             position: relative; z-index: 1;
             height: 100%;
             display: flex; justify-content: center; align-items: center;
         }
 
-        /* ENTRY SCREEN */
         #entry-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000;
@@ -33,7 +31,6 @@
             transition: opacity 0.8s;
         }
 
-        /* VOLUME CONTROL (Top Right) */
         .volume-container {
             position: fixed; top: 30px; right: 30px; z-index: 100;
             display: none; align-items: center;
@@ -45,7 +42,6 @@
         input[type=range] { -webkit-appearance: none; width: 100px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 5px; outline: none; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: white; border-radius: 50%; cursor: pointer; }
 
-        /* --- NEW: REV BUTTON (Bottom Right) --- */
         .rev-btn {
             position: fixed; bottom: 30px; right: 30px; z-index: 100;
             display: none; /* Hidden until enter */
@@ -61,7 +57,6 @@
         .rev-btn:hover { background: #0066b1; transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 102, 177, 0.6); }
         .rev-btn:active { transform: scale(0.95); }
 
-        /* CARD DESIGN */
         .profile-card {
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(3px);
@@ -81,7 +76,6 @@
         h1 { font-size: 26px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 5px; font-weight: 700; }
         .subtitle { color: #aaa; font-size: 12px; margin-bottom: 30px; letter-spacing: 1px; }
 
-        /* BUTTONS */
         .btn {
             display: block; width: 100%;
             background: rgba(255,255,255,0.08);
@@ -92,12 +86,10 @@
         }
         .btn:hover { background: rgba(255,255,255,0.2); border-color: #0066b1; }
 
-        /* TEXT CONTENT STYLES */
         .info-text { text-align: left; font-size: 14px; line-height: 1.6; color: #ddd; margin-bottom: 20px; }
         .specs-list { text-align: left; padding: 10px; }
         .spec-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 12px 0; display: flex; justify-content: space-between; font-size: 14px; }
         
-        /* GALLERY STYLES */
         .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .photo-frame { height: 100px; border-radius: 10px; overflow: hidden; border: 2px solid rgba(255,255,255,0.1); transition: all 0.3s ease; cursor: pointer; }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
@@ -121,7 +113,7 @@
     </div>
 
     <video id="bg-video" loop muted playsinline>
-        <source src="https://cdn.discordapp.com/attachments/1310335987326390402/1458245517988593778/1.mp4?ex=695ef078&is=695d9ef8&hm=6c32f69c449634a443183ced03185d9051f06f3ea41ec7d57d00b6a806a30ce4&" type="video/mp4">
+        <source src="1.mp4" type="video/mp4">
     </video>
 
     <audio id="rev-sound">
@@ -169,10 +161,10 @@
                 <h1>GALLERY</h1>
                 <p class="subtitle">Visual Collection</p>
                 <div class="photo-grid">
-                    <div class="photo-frame"><img src="https://cdn.discordapp.com/attachments/1310335987326390402/1458250864027369625/2.jpg.webp?ex=695ef572&is=695da3f2&hm=c34a606fd59209e7dfb3e75d5a09c01f91fc313680a53395accd9e117ade78d7&" alt="BMW Photo 1"></div>
-                    <div class="photo-frame"><img src="https://cdn.discordapp.com/attachments/1310335987326390402/1458250864425697372/3.jpg.jpg?ex=695ef573&is=695da3f3&hm=44fb0b5df977bca01a87baa1c7ddc14cbebf7aa9382989705fa1f2dcfdb037db&" alt="BMW Photo 2"></div>
-                    <div class="photo-frame"><img src="https://media.discordapp.net/attachments/1310335987326390402/1458250864706719905/4.jpg.jfif?ex=695ef573&is=695da3f3&hm=43a96303b7bfc9bd4933c1c00f5876b1ba42fe87ca97b0220bd6db2cd33f5e7c&=&format=webp" alt="BMW Photo 3"></div>
-                    <div class="photo-frame"><img src="https://media.discordapp.net/attachments/1310335987326390402/1458250864987865201/1.jpg.jpg?ex=695ef573&is=695da3f3&hm=fb286e25bbd7a2c08369eb50eb6bb09135ce6716c8c7eb865c121e41c1a60438&=&format=webp&width=541&height=676" alt="BMW Photo 4"></div>
+                    <div class="photo-frame"><img src="1.jpg" alt="BMW Photo 1"></div>
+                    <div class="photo-frame"><img src="2.jpg" alt="BMW Photo 2"></div>
+                    <div class="photo-frame"><img src="3.jpg" alt="BMW Photo 3"></div>
+                    <div class="photo-frame"><img src="4.jpg" alt="BMW Photo 4"></div>
                 </div>
                 <button class="btn" onclick="showSection('home')">← Back</button>
             </div>
@@ -209,7 +201,6 @@
             var card = document.getElementById('main-card');
             card.classList.add('hidden-card');
             
-            // NOTE: I changed this to 200ms to match your CSS speed so it doesn't lag!
             setTimeout(function() {
                 ['home', 'about', 'specs', 'gallery', 'contact'].forEach(id => {
                     document.getElementById(id + '-content').style.display = 'none';
@@ -219,9 +210,8 @@
             }, 200); 
         }
 
-        // --- PLAY SOUND FUNCTION ---
         function playRev() {
-            revSound.currentTime = 0; // Restart sound if clicked fast
+            revSound.currentTime = 0;
             revSound.volume = 1.0;
             revSound.play();
         }
